@@ -1,14 +1,13 @@
-
 # Base Api's
 
-Simple restapi base using express js
----
+## Simple restapi base using express js
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/khrlmstfa/Base-api/)
 
 [![Run on Repl.it](https://repl.it/badge/github/khrlmstfa/Base-api)](https://repl.it/github/khrlmstfa/Base-api)
 
 ## 📮 S&K
+
 1. Script ini tidak untuk dijual
 2. Jangan lupa beri bintang pada repo ini
 3. Jika ada yang memperjual belikan Script ini silahkan laporkan ke saya[`WhatsApp`](https://wa.me/6287740175435)
@@ -31,9 +30,8 @@ Simple restapi base using express js
 
 This project is licensed under the [MIT License](LICENSE), which means you are free to use, modify, and distribute the code, but you must include the original copyright and license notice in any copy of the project or substantial portion of it.
 
-
-
 ## Contoh menyetting web di schema/config.js
+
 ```
 const options = {
   name : 'Api_Name', //Up to you..
@@ -48,7 +46,7 @@ const options = {
 module.exports = {
   options,
   host: {
-    BASE_URL: 'YOUR_DOMAIN.com' 
+    BASE_URL: 'YOUR_DOMAIN.com'
 /*
 Example: domain.com
 don't use https, just the domain name!
@@ -57,7 +55,6 @@ don't use https, just the domain name!
   }
 }
 ```
-
 
 ## Authors
 

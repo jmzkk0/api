@@ -1,21 +1,18 @@
 const options = {
-  name : 'Rulzz API',
-  developer: "@Irull2nd",
+  name: "HitamAPIs",
+  developer: "@sayuran.vip",
   port: 3000,
-  webname: 'Rulzz - API Playground',
-  description: 'Simple Base Rest API',
-  favicon: 'https://cdn.itzpire.site/file/1716296635499-d60db2.jpg'
-}
+  webName: "HitamAPIs Playground",
+  description: "Simple Base Rest API",
+  favicon: "https://cdn.itzpire.site/file/1716296635499-d60db2.jpg",
+};
 
+const host = {
+  BASE_URL: "http://localhost:3000", // Ganti dengan URL yang sesuai
+  // Contoh: https://domain.com
+};
 
 module.exports = {
   options,
-  host: {
-    BASE_URL: 'domain.xyz' 
-/*
-Example: domain.com
-don't use https, just the domain name!
-*/
-
-  }
-}
+  host,
+};

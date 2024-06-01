@@ -1,87 +1,139 @@
 const swaggerUi = require("swagger-ui-express");
 const config = require("./config");
-const { SwaggerTheme, SwaggerThemeNameEnum } = require('swagger-themes');
-const theme = new SwaggerTheme();
-const inurl = 'Please Input URL!'
-const inquery = 'Please Input Query!'
+const { SwaggerTheme, SwaggerThemeNameEnum } = require("swagger-themes");
 
-var options = {
-    customSiteTitle: config.options.webname,
-    customfavIcon: config.options.favicon,
-    customCss: theme.getBuffer(SwaggerThemeNameEnum.DARK) + `.topbar { display: none; }`,
-    swaggerOptions: {
-      displayRequestDuration: true,
-    },
-  };
+const theme = new SwaggerTheme();
+const inUrl = "Please input URL!";
+const inQuery = "Please input Query!";
+
+const options = {
+  customSiteTitle: config.options.webName,
+  customfavIcon: config.options.favicon,
+  customCss: `${theme.getBuffer(SwaggerThemeNameEnum.DARK)}.topbar { display: none; }`,
+  swaggerOptions: {
+    displayRequestDuration: true,
+  },
+};
 
 const swaggerDocument = {
-  swagger: "2.0",
+  openapi: "3.0.0",
   info: {
-    version: "5.0.0",
     title: config.options.name,
     description: config.options.description,
+    version: "1.0.0",
     "x-logo": {
       url: config.options.favicon,
       altText: config.options.name,
     },
   },
-  host: config.host.BASE_URL,
-  basePath: "/",
-  tags: [{ name: "AI", description: "API endpoints for artificial inteligence content from various platforms." },
-         { name: "Downloader",
-description: "API endpoints for downloading content from various platforms."},
-         { name: "Tools",
-description: "API endpoints for content tools from multiple platforms."}],
-paths: {
-"/api/ai/chatgpt": {
+  servers: [
+    {
+      url: config.host.BASE_URL,
+    },
+  ],
+  tags: [
+    {
+      name: "AI",
+      description:
+        "API endpoints for artificial intelligence content from various platforms.",
+    },
+    {
+      name: "Downloader",
+      description:
+        "API endpoints for downloading content from various platforms.",
+    },
+    {
+      name: "Tools",
+      description: "API endpoints for content tools from multiple platforms.",
+    },
+  ],
+  paths: {
+    "/api/ai/chatgpt": {
       get: {
         tags: ["AI"],
-        summary: "Chat with gpt AI",
+        summary: "Chat with GPT AI",
         parameters: [
           {
             in: "query",
             name: "query",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inquery}`,
+            description: inQuery,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    status: {
+                      type: "boolean",
+                      example: true,
+                    },
+                    developer: {
+                      type: "string",
+                      example: config.options.developer,
+                    },
+                    result: {
+                      type: "object",
+                      properties: {
+                        message: {
+                          type: "string",
+                          example: "Hello! How can I help you today?",
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
           },
         },
       },
     },
-
-  "/api/ai/gptlogic": {
+    "/api/ai/gptlogic": {
       get: {
         tags: ["AI"],
-        summary: "Chat with gpt Logic",
+        summary: "Chat with GPT Logic",
         parameters: [
           {
             in: "query",
             name: "query",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inquery}`,
+            description: inQuery,
           },
-            {
+          {
             in: "query",
             name: "prompt",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inquery}`,
+            description: inQuery,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
     },
-
     "/api/ai/virtualgirl": {
       get: {
         tags: ["AI"],
@@ -90,19 +142,27 @@ paths: {
           {
             in: "query",
             name: "query",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inquery}`,
+            description: inQuery,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
     },
-
     "/api/ai/dystopia": {
       get: {
         tags: ["AI"],
@@ -111,20 +171,28 @@ paths: {
           {
             in: "query",
             name: "query",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inquery}`,
+            description: inQuery,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
     },
-
-  "/api/ai/ersgan": {
+    "/api/ai/ersgan": {
       get: {
         tags: ["AI"],
         summary: "Ersgan filter on the image",
@@ -132,14 +200,23 @@ paths: {
           {
             in: "query",
             name: "url",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inurl}`,
+            description: inUrl,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
@@ -147,93 +224,129 @@ paths: {
     "/api/ai/luminai": {
       post: {
         tags: ["AI"],
-        summary: "Chat ai created by siputzx",
+        summary: "Chat AI created by siputzx",
         parameters: [
           {
             in: "query",
             name: "query",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inquery}`,
+            description: inQuery,
           },
           {
             in: "query",
             name: "username",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inquery}`,
+            description: inQuery,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
     },
-          "/api/downloader/tiktok": {
+    "/api/downloader/tiktok": {
       get: {
         tags: ["Downloader"],
-        summary: "Downloading video tiktok",
+        summary: "Download TikTok video",
         parameters: [
           {
             in: "query",
             name: "url",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inurl}`,
+            description: inUrl,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
     },
-
-"/api/downloader/igdl": {
+    "/api/downloader/igdl": {
       get: {
         tags: ["Downloader"],
-        summary: "Download instagram video",
+        summary: "Download Instagram video",
         parameters: [
           {
             in: "query",
             name: "url",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inurl}`,
+            description: inUrl,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
     },
-  
-  "/api/downloader/spotify": {
+    "/api/downloader/spotify": {
       get: {
         tags: ["Downloader"],
-        summary: "Downloading spotify music",
+        summary: "Download Spotify music",
         parameters: [
           {
             in: "query",
             name: "url",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inurl}`,
+            description: inUrl,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
     },
-  "/api/tools/remini": {
+    "/api/tools/remini": {
       get: {
         tags: ["Tools"],
         summary: "HD enhancer using Remini",
@@ -241,21 +354,29 @@ paths: {
           {
             in: "query",
             name: "url",
-            type: "string",
+            schema: {
+              type: "string",
+            },
             required: true,
-            description: `${inurl}`,
+            description: inUrl,
           },
         ],
         responses: {
           200: {
-            description: "Result Successfully",
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                },
+              },
+            },
           },
         },
       },
     },
   },
-  
   "x-request-time": new Date().toISOString(),
 };
 
-module.exports = { swaggerDocument, options }
+module.exports = { swaggerDocument, options };
