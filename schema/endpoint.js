@@ -46,15 +46,16 @@ const swaggerDocument = {
       description:
         "API endpoints for artificial intelligence content from various platforms.",
     },
-    {
-      name: "Downloader",
-      description:
-        "API endpoints for downloading content from various platforms.",
-    },
-    {
-      name: "Tools",
-      description: "API endpoints for content tools from multiple platforms.",
-    },
+    // aja sendiri
+    // {
+    //   name: "Downloader",
+    //   description:
+    //     "API endpoints for downloading content from various platforms.",
+    // },
+    // {
+    //   name: "Tools",
+    //   description: "API endpoints for content tools from multiple platforms.",
+    // },
   ],
   paths: {
     "/api/ai/chatgpt": {
