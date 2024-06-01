@@ -9,9 +9,6 @@ const docs = require("./schema/endpoint");
 const api = require("./router/api");
 const anim = require("./lib/print");
 
-const CSS_URL =
-  "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
-
 const app = express();
 
 // Middleware Configuration
@@ -29,7 +26,7 @@ app.get("/", (req, res) => {
 app.use(
   "/playground",
   swaggerUi.serve,
-  swaggerUi.setup(docs.swaggerDocument, docs.options, { customCssUrl: CSS_URL }),
+  swaggerUi.setup(docs.swaggerDocument, docs.options),
 );
 
 // 404 Error Handler
