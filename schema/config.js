@@ -4,7 +4,8 @@ const options = {
   port: 3000,
   webName: "HitamAPIs Playground",
   description: "Simple Base Rest API",
-  favicon: "https://cdn.itzpire.site/file/1716296635499-d60db2.jpg",
+  favicon:
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Black.png/220px-Black.png",
 };
 
 const host = {

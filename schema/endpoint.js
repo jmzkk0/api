@@ -46,7 +46,6 @@ const swaggerDocument = {
       description:
         "API endpoints for artificial intelligence content from various platforms.",
     },
-    // aja sendiri
     // {
     //   name: "Downloader",
     //   description:
@@ -95,6 +94,64 @@ const swaggerDocument = {
                         message: {
                           type: "string",
                           example: "Hello! How can I help you today?",
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    "/api/ai/gptlogic": {
+      get: {
+        tags: ["AI"],
+        summary: "Chat with GPT Logic",
+        parameters: [
+          {
+            in: "query",
+            name: "query",
+            schema: {
+              type: "string",
+            },
+            required: true,
+            description: inQuery,
+          },
+          {
+            in: "query",
+            name: "prompt",
+            schema: {
+              type: "string",
+            },
+            required: true,
+            description: inQuery,
+          },
+        ],
+        responses: {
+          200: {
+            description: "Result successfully returned",
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    status: {
+                      type: "boolean",
+                      example: true,
+                    },
+                    developer: {
+                      type: "string",
+                      example: config.options.developer,
+                    },
+                    result: {
+                      type: "object",
+                      properties: {
+                        message: {
+                          type: "string",
+                          example:
+                            "Hello! How can I help you with your prompt?",
                         },
                       },
                     },
